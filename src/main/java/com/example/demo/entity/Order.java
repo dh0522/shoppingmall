@@ -28,7 +28,13 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    @OneToMany(mappedBy = "order") // 연관관계 주인 설정 : orderitem( 외래키가 order item 테이블에 있으니까 )
+    /*
+         mapped by : 연관관계 주인 설정 : orderitem( 외래키가 order item 테이블에 있으니까 )
+         cascade : 부모엔티티의 영속성 상태변화를 자식 엔티티에 모두 전이
+         orphanRemoval : 고아 객체 ( 부모 엔티티와 연관관계가 끊어진 자식 엔티티 )
+
+     */
+    @OneToMany(mappedBy = "order" , cascade = CascadeType.ALL , orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     private LocalDateTime regTime;
