@@ -18,7 +18,7 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
@@ -34,7 +34,8 @@ public class Order {
          orphanRemoval : 고아 객체 ( 부모 엔티티와 연관관계가 끊어진 자식 엔티티 )
 
      */
-    @OneToMany(mappedBy = "order" , cascade = CascadeType.ALL , orphanRemoval = true)
+    @OneToMany(mappedBy = "order" , cascade = CascadeType.ALL
+                            , orphanRemoval = true , fetch = FetchType.LAZY)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     private LocalDateTime regTime;

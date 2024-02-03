@@ -15,12 +15,13 @@ public class OrderItem {
     private Long id;
 
     // 하나의 상품은 여러 주문 상품으로 들어갈 수 있음 .
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
 
     // 한번의 주문 <-> 여러개 상품
-    @ManyToOne
+    // fetch lazy = 지연 로딩 -> 해당 엔티티만 조회 ( 연관되어있는 다른 엔티티들은 조회 X ,하려면 즉시로딩 )
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
 
