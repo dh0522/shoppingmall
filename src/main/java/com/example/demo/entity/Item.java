@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Entity
 @Getter @Setter
 @Table(name = "item")
-public class Item {
+public class Item extends BaseEntity {
     // 상품 코드
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,9 +35,4 @@ public class Item {
     // 상품 판매 상태 - sell , soldout
     private ItemSellStatus itemSellStatus;
 
-    // 등록 시간
-    private LocalDate regTime;
-
-    // 수정 시간
-    private LocalDate updateTime;
 }

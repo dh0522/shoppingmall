@@ -9,7 +9,7 @@ import lombok.ToString;
 @Table(name ="cart")
 @Getter @Setter
 @ToString
-public class Cart {
+public class Cart extends BaseEntity {
     // 회원 한 명 <-> 장바구니 하나 : 일대일
     // 장바구니 하나 <-> 상품 여러개 : 일대다
 

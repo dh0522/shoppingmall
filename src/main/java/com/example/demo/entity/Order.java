@@ -12,7 +12,7 @@ import java.util.ArrayList;
 @Entity
 @Table(name = "orders")
 @Getter @Setter
-public class Order {
+public class Order extends BaseEntity {
     // 한명의 회원 <-> 여러개의 주문. 따라서 주문 입장에서 다대일
     @Id @GeneratedValue
     @Column(name = "order_id")
@@ -38,7 +38,5 @@ public class Order {
                             , orphanRemoval = true , fetch = FetchType.LAZY)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    private LocalDateTime regTime;
 
-    private LocalDateTime updateTime;
 }

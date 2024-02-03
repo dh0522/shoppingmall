@@ -7,7 +7,7 @@ import lombok.Setter;
 @Entity
 @Getter @Setter
 @Table(name = "cart_item")
-public class CartItem {
+public class CartItem extends BaseEntity {
     // CARTITEM 입장
     // 장바구니 하나 <-> 물건 여러개 : 다대일
     //
