@@ -8,9 +8,11 @@ import lombok.Setter;
 @Entity
 @Table(name = "item_img")
 @Getter @Setter
+
 public class ItemImg extends BaseEntity {
-    @Id @GeneratedValue( strategy = GenerationType.AUTO )
+    @Id
     @Column(name = "item_img_id")
+    @GeneratedValue( strategy = GenerationType.AUTO )
     private Long id;
 
     // 이미지 파일명

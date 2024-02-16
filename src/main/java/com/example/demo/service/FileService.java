@@ -17,7 +17,8 @@ public class FileService {
             실제 사용 시 중복될 가능성이 거의 없기 때문에 파일의 이름으로 사용하면 파일명 중복문제를 해결할 수 있다.
          */
         UUID uuid = UUID.randomUUID();
-        String savedFileName = originalFileName.substring(originalFileName.lastIndexOf("."));
+        String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+        String savedFileName = uuid.toString() + extension;
 
         String fileUploadFullUrl = uploadPath + "/" + savedFileName;
 

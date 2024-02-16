@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_UNAUTHORIZED;
 
+
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     @Override

@@ -9,8 +9,8 @@ import java.time.LocalDate;
 public class ItemDto {
 
     private Long id;
-    private String name;
-    private int price;
+    private String itemNm;
+    private Integer price;
     private String itemDetail;
     private String sellStatCd;
     private LocalDate regTime;
