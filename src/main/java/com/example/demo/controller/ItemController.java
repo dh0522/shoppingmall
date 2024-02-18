@@ -35,7 +35,7 @@ public class ItemController {
 
     @PostMapping(value = "/admin/item/new")
     public String itemNew(@Valid ItemFormDto itemFormDto , BindingResult bindingResult
-            , Model model , @RequestParam("itemImgFile") List<MultipartFile> itemImgFileList ){
+            , Model model , @RequestParam(name = "itemImgFile") List<MultipartFile> itemImgFileList ){
 
         if(bindingResult.hasErrors()){
             return "item/itemForm";
@@ -57,7 +57,7 @@ public class ItemController {
     }
 
     @GetMapping(value = "/admin/item/{itemId}")
-    public String itemDtl(@PathVariable("itemId") Long itemId , Model model ){
+    public String itemDtl(@PathVariable(name = "itemId") Long itemId , Model model ){
 
         try{
 
@@ -82,7 +82,7 @@ public class ItemController {
 
     @PostMapping(value = "/admin/item/{itemId}")
     public String itemUpdate(@Valid ItemFormDto itemFormDto , BindingResult bindingResult
-            , @RequestParam("itemImgFile") List<MultipartFile> itemImgFileList , Model model){
+            , @RequestParam(name = "itemImgFile") List<MultipartFile> itemImgFileList , Model model){
 
         if(bindingResult.hasErrors()){
             return "item/itemForm";
@@ -106,7 +106,7 @@ public class ItemController {
 
 
     @GetMapping(value = {"/admin/items", "/admin/items/{page}"})
-    public String itemManage(ItemSearchDto itemSearchDto , @PathVariable("page")Optional<Integer> page, Model model ){
+    public String itemManage(ItemSearchDto itemSearchDto , @PathVariable(name = "page")Optional<Integer> page, Model model ){
 
 
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,3 );
