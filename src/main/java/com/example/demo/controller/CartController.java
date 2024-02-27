@@ -2,11 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.CartDetailDto;
 import com.example.demo.dto.CartItemDto;
+import com.example.demo.dto.CartOrderDto;
 import com.example.demo.service.CartService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -86,6 +88,28 @@ public class CartController {
 
         cartService.deleteCartItem(cartItemId);
         return new ResponseEntity<Long>(cartItemId , HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/cart/orders")
+    public @ResponseBody ResponseEntity orderCartItem (@RequestBody CartOrderDto cartOrderDto , Principal principal ){
+
+        List<CartOrderDto> cartOrderDtoList = cartOrderDto.getCartOrderDtoList();
+
+        if(cartOrderDtoList == null || cartOrderDtoList.size() == 0 ){
+
+            return new ResponseEntity<String>("주문할 상품을 선택해주세요. ", HttpStatus.FORBIDDEN);
+        }
+
+        for(CartOrderDto cartOrder : cartOrderDtoList ){
+
+            if( !cartService.validateCartItem(cartOrder.getCartItemId(),principal.getName()) ){
+                return new ResponseEntity<String>("주문 권한이 없습니다." , HttpStatus.FORBIDDEN);
+
+            }
+        }
+
+        Long orderId = cartService.orderCartItem(cartOrderDtoList , principal.getName());
+        return new ResponseEntity<Long>(orderId, HttpStatus.OK);
     }
 
 }
